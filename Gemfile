@@ -37,7 +37,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-vkontakte'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'acts-as-taggable-on'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

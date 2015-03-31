@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Красивые обои для рабочего стола скачать бесплатно без регистрации</title>
+
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript">
+	function  myTags(mytags){
+		mytags=mytags.replace(/<A/g, '<a')
+			.replace(/\/A>/g, "/a>")
+			.replace(/(target=_)(\w*)/g, 'target="_$2"')
+			.replace(/(class=)(?!")(\w*)/g, 'class="$2"')
+			.replace(/(name=)(?!")(\w*)/g, 'name="$2"')
+			.replace(/(id=)(?!")(\w*)/g, 'id="$2"');
+		mytags=encodeURIComponent(mytags).replace(/!/g, '%21')
+			.replace(/'/g, '%27').replace(/\(/g, '%28')
+			.replace(/\)/g, '%29').replace(/\*/g, '%2A');
+		var rnumber = Math.floor(Math.random()*9999999);
+		var flashvars = {
+			tcolor:"0x267fe3",
+			hicolor:"0x888888",
+			tspeed:"120",
+			distr:"true",
+			mode:"tags",
+			tagcloud:mytags
+		};
+		var params = {
+			allowScriptAccess:"always",
+			bgcolor:'#ffffff'
+		};
+		var attributes = {
+			id:"flash_cloud"
+		};
+		swfobject.embedSWF("tagcloud.swf?r="+rnumber,
+						   "tags", "300", "240", "9.0.0",
+						   "expressInstall.swf", flashvars,
+						   params, attributes);
+	}
+
+	window.onload=function(){ 
+		var mytags="<tags>"
+		+document.getElementById('tags').innerHTML
+		+"</tags>";
+		myTags(mytags);
+	};
+</script>
+	
+</head>
+<body>
+	<div id="tags">
+	<a href="../../../lesson.php?cat=html" style="font-size:11px;">HTML</a>
+	<a href="../../../lesson.php?cat=php" style="font-size:11px;">PHP</a>
+	<a href="../../../lesson.php?cat=swf" target="_blank" style="font-size:11px;">Flash</a>
+	<a href="../../../lesson.php?cat=ajax" style="font-size:11px;">Ajax</a>
+	<a href="../../../lesson.php?cat=ocss" style="font-size:11px;">CSS</a>
+	<a href="../../../lesson.php?cat=js" style="font-size:11px;">JavaScript</a>
+	
+	<a href="../../../lesson.php?cat=jq" style="font-size:11px;">Уроки по JQuery</a>
+	<a href="../../../lesson.php?cat=omysql" style="font-size:11px;">Основы MySQL</a>
+	<a href="../../../file.php?cat=template" style="font-size:11px;">Шаблоны</a>
+</div>
+	
+
+
+
+
+	
+</body>
+</html>

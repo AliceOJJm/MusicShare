@@ -1,0 +1,16 @@
+<div id="tag_cloud">
+  <% tag_cloud Song.tag_counts, %w[s m l] do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+  <% tag_cloud Playlist.tag_counts, %w[s m l] do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+songs tags<br>
+<% @songs.each do |song| %>
+    <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+<% end %><br>
+playlists tags<br>
+<% @playlists.each do |playlist| %>
+    <%= raw playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+<% end %>
