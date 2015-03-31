@@ -19,10 +19,10 @@ class SongsController < ApplicationController
     @song.file = params[:file]
 
     @song.save!
+
     respond_to do |format|
       format.html { redirect_to songs_path(@song.user_id), notice: 'Song was successfully updated.' }
       format.json { render json: @song }
-
     end
   end
 
@@ -35,6 +35,7 @@ class SongsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_song
@@ -43,6 +44,6 @@ class SongsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def song_params
-    params.require(:song).permit(:user_id, :file)
+    params.require(:song).permit(:user_id, :file, :title, :performer)
   end
 end

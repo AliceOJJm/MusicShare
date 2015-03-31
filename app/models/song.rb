@@ -5,6 +5,5 @@ class Song < ActiveRecord::Base
   has_and_belongs_to_many :genres
   has_many :marks, as: :markable
   acts_as_taggable
-
   mount_uploader :file, SongUploader
 end
