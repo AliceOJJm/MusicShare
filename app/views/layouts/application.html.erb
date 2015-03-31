@@ -46,9 +46,15 @@
       </div>
   </div>
 </nav>
-<%= link_to "My Songs", ""%> как-то гет сонгс индекс пас .. или что
-<%= link_to "My Playlists", ""%>
-<%= link_to "My Zakladki", ""%>
+<% if current_user %>
+<div class="panel">
+  <ul class="nav nav-pills">
+    <li role="presentation"><%= link_to "Songs", songs_path%></li>
+    <li role="presentation"><%= link_to "Playlists", playlists_path%></li>
+    <li role="presentation"><%= link_to "Bookmarks", ""%></li>
+  </ul>
+</div>
+    <% end %>
 <%= yield %>
 
 </body>

@@ -1,9 +1,9 @@
 class PlaylistsController < ApplicationController
-  def index
-    if params[:tag]
-      @playlists = Playlist.tagged_with(params[:tag])
-    else
-      @playlists = Playlist.all
+    def show
+      @playlists = User.find_by_id(current_user.id).playlists.all
     end
-  end
+
+    def index
+      @playlists = User.find_by_id(current_user.id).playlists.all
+    end
 end

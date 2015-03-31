@@ -1,5 +1,9 @@
 class SongsController < ApplicationController
   def show
-    @songs = Song.where(:user_id => current_user.id)
+    @songs = User.find_by_id(current_user.id).songs.all
+  end
+
+  def index
+    @songs = User.find_by_id(current_user.id).songs.all
   end
 end

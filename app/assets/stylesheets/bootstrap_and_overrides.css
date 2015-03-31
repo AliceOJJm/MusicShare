@@ -96,3 +96,13 @@ h3.highlight  {
 .btn-social-icon{
     margin-top : 7px;
 }
+
+.panel {
+    width: 60%;
+    margin: auto;
+}
+
+.panel li{
+    width:33.15%;
+    text-align: center;
+}

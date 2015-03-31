@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
-  resources :application do
   resources :songs
   resources :playlists
   resources :users
-  end
   root 'home#index'
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
