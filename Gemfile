@@ -38,6 +38,12 @@ gem 'omniauth-vkontakte'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'acts-as-taggable-on'
+
+gem "fog"
+gem "carrierwave"
+
+gem 'dropzonejs-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

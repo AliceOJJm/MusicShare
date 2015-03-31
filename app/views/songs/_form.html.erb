@@ -1,0 +1,4 @@
+<%= form_for [Song.new], :html => {id: 'song-dropzone', class: :dropzone, multipart: true}  do |f| %>
+    <%= f.hidden_field :file %>
+    <%= f.submit%>
+<% end %>

@@ -1,5 +1,9 @@
+<p><strong>Existing Music:</strong></p>
 <% @songs.each do |song| %>
-      <%= song.title %>
-      <%= song.performer %>
-    <br>
+    <p> <%= song.title %> </p>
+    <p>  <%= song.performer %> </p>
+      <%= audio_tag song.file.url.to_s, controls: true %>
+    <p>  <%= link_to "Delete", song, method: :delete, confirm: "Are you sure you want to delete #{song.file}?" %> </p>
 <% end %>
+
+<%= render "form" %>

@@ -9,6 +9,13 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+//= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap
+//= require dropzone
+//= require turbolinks
+//= require_tree .
+
 jQuery(function() {
     $('body').prepend('<div id="fb-root"></div>');
     return $.ajax({
@@ -40,8 +47,21 @@ window.fbAsyncInit = function() {
         return true;
     });
 };
-//= require jquery
-//= require jquery_ujs
-//= require twitter/bootstrap
-//= require turbolinks
-//= require_tree .
+
+
+
+Dropzone.options.songDropzone = {
+    paramName: "file",
+    maxFilesize: 10,
+    addRemoveLinks: true,
+    init: function() {
+        return this.on('removedfile', function(file) {
+            if (file.xhr) {
+                return $.ajax({
+                    url: "" + ($("#song-dropzone").attr("action")) + "/" + (JSON.parse(file.xhr.response).id),
+                    type: 'DELETE'
+                });
+            }
+        });
+    }
+};

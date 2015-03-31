@@ -22,5 +22,14 @@ module A
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    CarrierWave.configure do |config|
+      config.fog_credentials = {
+          provider:                         'Google',
+          google_storage_access_key_id:     'GOOGQSTBAZ2X25B62GAG',
+          google_storage_secret_access_key: 'blVLMdgX+mWZzJqZDCXBWgxB8MyfqUcZexaffuSz'
+      }
+      config.fog_directory = 'blog-music'
+    end
   end
 end
