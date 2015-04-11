@@ -1,12 +1,15 @@
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json
 
   def show
-    @songs = User.find_by_id(current_user.id).songs.all
+    @songs = User.find_by_id(current_user.id).songs.all #find by id params id
   end
 
   def index
-    @songs = User.find_by_id(current_user.id).songs.all
+      self.new
+      @user = User.find(params[:user_id])
+      @songs = User.find_by_id(params[:user_id]).songs.all
   end
 
   def new
@@ -14,26 +17,35 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = Song.new
-    @song.user_id = current_user.id
-    @song.file = params[:file]
-
-    @song.save!
-
+    @song = Song.create(song_params)
+    @song.parse_mp3
     respond_to do |format|
-      format.html { redirect_to songs_path(@song.user_id), notice: 'Song was successfully updated.' }
-      format.json { render json: @song }
+      if @song.save
+        format.html { redirect_to user_path(@song.user_id)}
+        format.json { render json: @song }
+      end
     end
   end
 
-  # DELETE /musics/1
-  # DELETE /musics/1.json
+  def update
+    @song = Song.find(params[:id])
+    @song.update_attributes(params_to_update)
+    respond_to do |format|
+      format.html { respond_with(@song)}
+      format.json { respond_with_bip(@song) }
+    end
+  end
+
+  def copy
+    @song = Song.find(params[:id])
+    @song_new = Song.new(title: @song.title, performer: @song.performer, user_id: current_user.id, remote_file_url: @song.file.url.to_s)
+    @song_new.save
+    render json: {song_id: params[:id]}
+  end
+
   def destroy
     @song.destroy
-    respond_to do |format|
-      format.html { redirect_to songs_path(@song.user_id), notice: 'Song was successfully deleted.' }
-      format.json { head :no_content }
-    end
+    render json: {song_id: params[:id]}
   end
 
   private
@@ -43,7 +55,12 @@ class SongsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def song_params
-    params.require(:song).permit(:user_id, :file, :title, :performer)
+  def params_to_update
+    params.require(:song).permit!
   end
+
+  def song_params
+    params.permit(:file, :user_id, :title, :performer)
+  end
+
 end

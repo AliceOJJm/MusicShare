@@ -1,0 +1,26 @@
+<table>
+<tr>
+  <td class = "align-right">
+  <% if(@playlists == []) %>
+        <%= current_user.id %>
+        <% if(current_user.id != params[:id]) %>
+            <p><strong><%= @user.name %> didn't create playlist yet.</strong></p>
+        <% else %>
+            <p><strong>You didn't create playlist yet.</strong></p>
+        <% end %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to " Create", user_playlists_path(current_user.id), method: :post, :class => "btn btn-info btn-lg glyphicon glyphicon-plus"%>
+  </td>
+</tr>
+</table>
+<br>
+  <% if(@playlists != []) %>
+    <% if(current_user.id != params[:id]) %>
+        <p><strong>Playlists by <%= @user.name %>.</strong></p>
+    <% end %>
+      <% @playlists.each do |playlist| %>
+        <%= render :partial => "show", :locals => {:playlist => playlist} %>
+     <% end %>
+  <% end %>

@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :marks, as: :markable
   has_many :own_marks, class_name: 'Mark',
            foreign_key: 'markable_id'
+  ratyrate_rater
+  ratyrate_rateable 'Rating'
+  acts_as_voter
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -12,7 +15,11 @@ class User < ActiveRecord::Base
       user.image = auth.info.image
       user.name = auth.info.name
       user.oauth_token = auth.credentials.token
-      user.save!
+      user.save
     end
   end
+
+ searchable do
+   text :name
+ end
 end

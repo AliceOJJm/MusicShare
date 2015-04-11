@@ -1,12 +1,24 @@
 Rails.application.routes.draw do
+  resources :home
   root 'home#index'
-  resources :songs
-  resources :playlists
-  resources :users
+  post '/rate' => 'rater#create', :as => 'rate'
+  get '/search' => 'search#search', :as => 'search'
+  resources :users do
+    resources :songs do
+      member do
+        post 'copy', to: "songs#copy"
+      end
+    end
+    resources :playlists do
+      member do
+        put "like", to: "playlists#upvote"
+      end
+    end
+  end
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
-  get 'tags/:tag', to: 'home#index', as: :tag
+  get 'tags/:tag', to: 'search#tags', as: :tag
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

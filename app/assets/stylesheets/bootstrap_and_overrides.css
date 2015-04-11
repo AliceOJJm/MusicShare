@@ -20,7 +20,11 @@ body {
     font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
     font-weight:300;
     color:#676767;
-    background-color:#efefef;
+ /*   background-color:#efefef;*/
+}
+
+table{
+    width: 100%
 }
 
 a,a:hover {
@@ -97,8 +101,140 @@ h3.highlight  {
     margin-top : 7px;
 }
 
-.panel {
+.panel{
     width: 60%;
+    margin: auto;
+}
+
+.jumbotron {
+    width: 68.5%;
+    margin: auto;
+}
+
+.panel li{
+    width:49%;
+    text-align: center;
+}
+
+.panel-default{
+    width: 100%;
+    margin: auto;
+}
+
+.digg_pagination {
+    margin-left: 30%;
+    cursor: default;
+}
+.digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+.digg_pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; }
+.digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1; }
+.digg_pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5; }
+.digg_pagination a:hover, .digg_pagination a:focus {
+    color: #000033;
+    border-color: #000033; }
+.digg_pagination .page_info {
+    margin-left: -7%;
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+.digg_pagination .page_info b {
+    color: #000033;
+    background: #6aa6ed;
+    padding: 0.1em 0.25em; }
+.digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+* html .digg_pagination {
+    height: 1%; }
+*:first-child + html .digg_pagination {
+    overflow: hidden; }
+
+.td-width {
+    width: 50%
+}
+
+.td-width-80 {
+    width: 80%
+}
+
+.nav-pills{
+    color: white;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+
+}
+
+.like {
+    font-size: 26px;
+    width: 80px;
+    font-weight: bold;
+    background: #fff url('like.svg.png') no-repeat;
+    background-size: 50% 100%;
+    background-position: 100% 100%;
+    border-radius: 5px;
+    color: #000;
+}
+.liked {
+    background: #5bc0de url('revlike.svg.png') no-repeat;
+    background-size: 50% 100%;
+    background-position: 90% 100%;
+    color: #ccc
+}
+
+.flag {
+    width: 25px;
+    height: 15px;
+    background:url(flags.png) no-repeat
+}
+
+.flag.flag-gb {background-position: -25px 0}
+.flag.flag-ru {background-position: 0 -15px}
+
+.disp{display: none;}
+
+.fasade{}
+/*
+
+.navbar-nav>li>a{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.sign_out{
+    padding: 10px;
+}
+
+.panel{
+    width: 60%;
+    margin: auto;
+}
+
+.jumbotron {
+    width: 68.5%;
     margin: auto;
 }
 
@@ -106,3 +242,5 @@ h3.highlight  {
     width:33.15%;
     text-align: center;
 }
+
+*/

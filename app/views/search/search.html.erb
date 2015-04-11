@@ -1,0 +1,24 @@
+<div class = "digg_pagination">
+  <div class = "page_info">
+   Results of search on <%= @request%>:
+  </div>
+</div>
+<%if params[:selector] == "Songs" %>
+    <%@results.each do |result|%>
+        <%= render :partial => "songs/show", :locals => {:song => result} %>
+    <%end%>
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @results %>
+      </div>
+    <%= will_paginate @results%>
+    </div>
+<%elsif params[:selector] == "Playlists"%>
+    <%@results.each do |result|%>
+        <%= render :partial => "playlists/show", :locals => {:playlist => result} %>
+    <%end%>
+<%else%>
+    <%@results.each do |result|%>
+        <%= render :partial => "users/show", :locals => {:user => result} %>
+    <%end%>
+<%end%>

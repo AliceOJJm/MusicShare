@@ -1,0 +1,50 @@
+<div class="panel panel-default" , id=<%="deletesong#{song.id}"%>>
+  <div class="panel-body">
+    <table>
+      <tr>
+        <td class = "td-width">
+          <% if(current_user != nil && (current_user.id == song.user_id || current_user.is_admin?)) %>
+              <b>Title:&nbsp;</b> <%= best_in_place song, :title, url: user_song_path(current_user.id, song.id)%>
+              <b>&nbsp;&nbsp;Performer:&nbsp;</b><%= best_in_place song, :performer, url: user_song_path(current_user.id, song.id)%>
+              <form>
+                  <%= text_field :tag_list, 'data-role'=>'tagsinput' %>
+              </form>
+          <% else %>
+              <b>Title:</b> <%= song.title %>
+              <b>&nbsp;&nbsp;Performer:</b> <%= song.performer %>
+          <% end %>
+        </td>
+        <td>
+          <% if (current_user != nil)%>
+              <%= rating_for song, "Rating", disable_after_rate: true, imdb_avg: true, cancel_hint: 'Cancel rating'%>
+          <% else %>
+              <% if(song.average("Rating"))%>
+                  Rate: <%= song.average("Rating").avg%>
+              <% else %>
+                  Rate: 0.0
+              <% end %>
+          <% end %>
+        </td>
+        <td rowspan="2">
+          Tags: <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= audio_tag song.file.url.to_s, controls: true %>
+        </td>
+        <td>
+          <% if(current_user != nil && (current_user.id == song.user_id || current_user.is_admin?)) %>
+              <%= link_to "", user_song_path(song.user_id, song.id), method: :delete, name: "deletesong", :class => "btn btn-info btn-lg glyphicon glyphicon-remove", remote: true%>
+          <% end %>
+          <% if(current_user != nil && current_user.id != song.user_id) %>
+              <%= link_to "", copy_user_song_path(current_user.id, song.id), method: :post, name: "copysong", id: "copysong#{song.id}", class: "btn btn-info btn-lg glyphicon glyphicon-plus", remote: true, disabled: false%>
+          <% end %>
+        </td>
+        <td>
+          Genre: <% if song.genre %> <%= song.genre.title%> <%end%>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

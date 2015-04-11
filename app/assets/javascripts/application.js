@@ -11,10 +11,21 @@
 // about supported directives.
 //= require jquery
 //= require jquery_ujs
+//= require jquery.purr
 //= require twitter/bootstrap
+//= require best_in_place
+//= require best_in_place.jquery-ui
+//= require jquery.turbolinks
 //= require dropzone
-//= require turbolinks
+//= require chosen-jquery
+//= require chosen.jquery
+//= require chooosen
+//= require bootstrap-tagsinput
 //= require_tree .
+
+jQuery(function($){
+    $('.chzn-select').chosen({width: "390px"});
+})
 
 jQuery(function() {
     $('body').prepend('<div id="fb-root"></div>');
@@ -49,19 +60,7 @@ window.fbAsyncInit = function() {
 };
 
 
-
-Dropzone.options.songDropzone = {
-    paramName: "file",
-    maxFilesize: 10,
-    addRemoveLinks: true,
-    init: function() {
-        return this.on('removedfile', function(file) {
-            if (file.xhr) {
-                return $.ajax({
-                    url: "" + ($("#song-dropzone").attr("action")) + "/" + (JSON.parse(file.xhr.response).id),
-                    type: 'DELETE'
-                });
-            }
-        });
-    }
-};
+$(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+});

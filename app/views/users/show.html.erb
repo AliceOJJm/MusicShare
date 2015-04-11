@@ -1,0 +1,38 @@
+<p><b>Profile</b></p>
+<table>
+  <tr>
+    <td>
+      <p>
+          <b><%= @user.name %></b>
+          <% if(@user.is_admin?) %>
+              <%= image_tag("https://cdn3.iconfinder.com/data/icons/fatcow/32x32_0760/ruby.png", :alt => "admin") %>
+          <% end %>
+      </p>
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%=image_tag(@user.image)%><br>
+      <p>Number of songs uploaded: <b><%= @amount_of_songs %></b></p>
+    </td>
+    <td>
+        <div class="btn-group-vertical" role="group">
+          <%= link_to "#{@user.name.split[0..0].join(" ")}'s songs", user_songs_path(@user.id), class:"btn btn-default"%>
+          <%= link_to "#{@user.name.split[0..0].join(" ")}'s playlists", user_playlists_path(@user.id), class:"btn btn-default"%>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+    <% if current_user %>
+        Rating: <%= rating_for @user, "Rating", disable_after_rate: true, imdb_avg: true, enable_half: true, imdb_avg: true, cancel_hint: 'Cancel rating'%>
+    <% end %>
+      </p>
+    </td>
+    <td>
+    </td>
+  </tr>
+</table>

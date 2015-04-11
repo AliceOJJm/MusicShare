@@ -1,3 +1,13 @@
-<%- model_class = User -%>
-
-
+<% if(@users == []) %>
+    <b>No users registered.</b>
+<% else %>
+    <% @users.each do |user| %>
+        <%= render :partial => "users/show", :locals => {:user => user} %>
+    <% end %>
+<% end %>
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @users %>
+  </div>
+  <%= will_paginate @users%>
+</div>

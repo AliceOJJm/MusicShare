@@ -1,17 +1,27 @@
-
-<div id="tag_cloud">
-  <% tag_cloud Song.tag_counts, %w[s m l] do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-  <% tag_cloud Playlist.tag_counts, %w[s m l] do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <%= link_to "Latest Songs Uploaded", home_index_path(folder: "Latest"), method: :get, id: "LatestLink", name: "folder", :class => "btn btn-default", remote: true%>
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to "Popular playlists", home_index_path(folder: "Playlists"), method: :get, id: "PlayliststLink", name: "folder", :class => "btn btn-default", remote: true%>
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to "Popular songs", home_index_path(folder: "Songs"), method: :get, id: "SongsLink", name: "folder", :class => "btn btn-default", remote: true%>
+  </div>
+  <div class="btn-group" role="group">
+    <%= link_to "Popular users", home_index_path(folder: "Users"), method: :get, id: "UsersLink", name: "folder", :class => "btn btn-default", remote: true%>
+  </div>
 </div>
-songs tags<br>
-<% @songs.each do |song| %>
-    <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-<% end %><br>
-playlists tags<br>
-<% @playlists.each do |playlist| %>
-    <%= raw playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-<% end %>
+<%= render :partial => "tag_cloud", :locals => {:songs_tags => @songs_tags, :playlists_tags => @playlists_tags}%>
+<div class = "disp" id = "Latest">
+  <%= render :partial => "last_uploaded", :locals => {:songs => @ten_latest_songs}%>
+</div>
+<div class = "disp" id = "Playlists">
+  <%= render :partial => "popular_playlists", :locals => {:playlists => @most_popular_playlists}%>
+</div>
+<div class = "disp" id = "Songs">
+  <%= render :partial => "popular_songs", :locals => {:songs => @most_popular_songs}%>
+</div>
+<div class = "disp" id = "Users">
+  <%= render :partial => "popular_users", :locals => {:users => @most_popular_users}%>
+</div>

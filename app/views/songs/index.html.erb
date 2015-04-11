@@ -1,13 +1,22 @@
-<% if(@songs) %>
-    <p><strong></strong></p>
-    <% @songs.each do |song| %>
-        <p> <%= song.title %> </p>
-        <p>  <%= song.performer %> </p>
-        <%= audio_tag song.file.url.to_s, controls: true %>
-        <p>  <%= link_to "Delete", song, method: :delete, confirm: "Are you sure you want to delete #{song.file}?" %> </p>
+<% if(@songs == []) %>
+    <% if(current_user.id != params[:id]) %>
+        <p><strong><%= @user.name %> didn't upload music yet.</strong></p>
+    <% else %>
+        <p><strong>You didn't upload music yet.</strong></p>
     <% end %>
-<%else%>
-    <p><strong>You didn't upload music yet.</strong></p>
+<% end %>
+<% if(current_user != nil && current_user.id.to_s == params[:user_id])%>
+    <%= render "form" %>
+    <br><br>
 <% end %>
 
-<%= render "form" %>
+<% if(current_user.id != params[:id]) %>
+    <p><strong>Songs uploaded by <%= @user.name %>.</strong></p>
+<% end %>
+<% if(@songs != []) %>
+    <div id="mysongs">
+        <% @songs.each do |song| %>
+            <%= render :partial => "show", :locals => {:song => song} %>
+        <% end %>
+    </div>
+<% end %>

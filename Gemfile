@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
@@ -19,18 +18,34 @@ gem 'therubyracer', platforms: :ruby
 gem "less-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap-social-rails'
-#gem 'rails_bootstrap_navbar'
+
 gem 'execjs'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'yaml_db'
+
+gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'responders'
+
+#parse mp3
+gem 'ruby-mp3info'
+
+gem 'rails-i18n'
+
+gem 'ratyrate'
+gem 'acts_as_votable'
+gem 'will_paginate'
+# fulltext search
+gem 'sunspot_rails'
+gem 'sunspot_solr', :groups => [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -42,9 +57,11 @@ gem 'omniauth-vkontakte'
 # gem 'unicorn'
 gem 'acts-as-taggable-on'
 
+gem 'bootstrap-tagsinput-rails'
+gem 'chosen-rails'
+
 gem "fog"
 gem "carrierwave"
-
 gem 'dropzonejs-rails'
 
 # Use Capistrano for deployment

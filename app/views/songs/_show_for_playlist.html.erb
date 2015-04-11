@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table>
+      <tr>
+        <td class = "td-width">
+          <b>Title:</b> <%= song.title %>
+          <b>&nbsp;&nbsp;Performer:</b> <%= song.performer %>
+        </td>
+        <td>
+          <% if (current_user != nil)%>
+              <%= rating_for song, "Rating", disable_after_rate: true, imdb_avg: true, cancel_hint: 'Cancel rating'%>
+          <% else %>
+              Rate:<b><%=song.average("Rating").avg%></b>
+          <% end %>
+        </td>
+        <td rowspan="2">
+          Tags: <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= audio_tag song.file.url.to_s, controls: true %>
+        </td>
+        <td>
+          <%= link_to "", edit_user_playlist_path(current_user.id, @playlist.id, song_id: song.id), method: :get, name: "addsong", id: "addsong#{song.id}", :class => "btn btn-info btn-lg glyphicon glyphicon-plus", remote: true, disabled: false%>
+       </tr>
+    </table>
+  </div>
+</div>
