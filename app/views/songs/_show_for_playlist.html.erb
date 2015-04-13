@@ -3,18 +3,18 @@
     <table>
       <tr>
         <td class = "td-width">
-          <b>Title:</b> <%= song.title %>
-          <b>&nbsp;&nbsp;Performer:</b> <%= song.performer %>
+          <b><%=t('title')%>:</b> <%= song.title %>
+          <b>&nbsp;&nbsp;<%=t('performer')%>:</b> <%= song.performer %>
         </td>
         <td>
           <% if (current_user != nil)%>
               <%= rating_for song, "Rating", disable_after_rate: true, imdb_avg: true, cancel_hint: 'Cancel rating'%>
           <% else %>
-              Rate:<b><%=song.average("Rating").avg%></b>
+              <%=t('rate')%>:<b><%=song.average("Rating").avg%></b>
           <% end %>
         </td>
-        <td rowspan="2">
-          Tags: <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        <td>
+          <%=t('tags')%>: <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
         </td>
       </tr>
       <tr>
@@ -23,7 +23,15 @@
         </td>
         <td>
           <%= link_to "", edit_user_playlist_path(current_user.id, @playlist.id, song_id: song.id), method: :get, name: "addsong", id: "addsong#{song.id}", :class => "btn btn-info btn-lg glyphicon glyphicon-plus", remote: true, disabled: false%>
-       </tr>
+        </td>
+        <td>
+          <%=t('genre')%>:&nbsp;
+          <% if song.genre %>
+              <%=select_tag "#{song.id}_#{current_user.id}", options_for_select(genres.map{|genre| genre.title}, :selected => song.genre.title)%>
+          <%end%>
+          <br>
+        </td>
+      </tr>
     </table>
   </div>
 </div>

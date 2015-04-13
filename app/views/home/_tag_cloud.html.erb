@@ -1,16 +1,15 @@
 <div id="myCanvasContainer" class="container">
-  <canvas width="600px" height="200px" id="myCanvas" style="margin:auto">
-    <p>Tag cloud is not supported</p>
+  <canvas width="800px" height="300px" id="myCanvas" style="margin:auto">
+    <p><%= t('tags_not_support') %></p>
+        <div id="tags">
+          <ul>
+            <% tag_cloud songs_tags, %w[s m l] do |tag, css_class| %>
+                <li><%= link_to tag.name, tag_path(tag.name), class: css_class %></li>
+            <% end %>
+            <% tag_cloud playlists_tags, %w[s m l] do |tag, css_class| %>
+                <li><%= link_to tag.name, tag_path(tag.name), class: css_class %></li>
+            <% end %>
+          </ul>
+        </div>
   </canvas>
-</div>
-
-<div id="tags">
-  <ul>
-    <% tag_cloud songs_tags, %w[s m l] do |tag, css_class| %>
-        <li><%= link_to tag.name, tag_path(tag.name), class: css_class %></li>
-    <% end %>
-    <% tag_cloud playlists_tags, %w[s m l] do |tag, css_class| %>
-        <li><%= link_to tag.name, tag_path(tag.name), class: css_class %></li>
-    <% end %>
-  </ul>
 </div>

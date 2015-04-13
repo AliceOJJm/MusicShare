@@ -1,6 +1,6 @@
 <% if(@songs == []) %>
-        <p><strong>No songs to add.</strong></p>
+        <p><strong><%= t('no_songs_to_add') %>.</strong></p>
 <% end %>
 <% @songs.each do |song| %>
-        <%= render :partial => "songs/show_for_playlist", :locals => {:song => song} %>
+        <%= render :partial => "songs/show_for_playlist", :locals => {:song => song, :genres => @genres} %>
 <% end %>

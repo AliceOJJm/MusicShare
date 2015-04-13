@@ -32,7 +32,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'yaml_db'
 
+gem 'jquery-ui-rails'
+
 gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'redcarpet'
 gem 'responders'
 
 #parse mp3

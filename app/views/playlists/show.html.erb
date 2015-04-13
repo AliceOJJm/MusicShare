@@ -2,40 +2,41 @@
   <tr>
     <td class = "td-width-80">
       <% if(current_user != nil && (current_user.id == @playlist.user_id || current_user.is_admin?)) %>
-          <p>Title:&nbsp;<strong><%= best_in_place @playlist, :title, url: user_playlist_path(current_user.id, @playlist.id)%></strong></p>
+          <p> <%= t('title') %>:&nbsp;<strong><%= best_in_place @playlist, :title, url: user_playlist_path(current_user.id, @playlist.id)%></strong></p>
       <% else %>
-          <p>Title: <strong> <%= @playlist.title %></strong></p>
+          <p><%= t('title') %>:<strong> <%= @playlist.title %></strong></p>
       <% end %>
     </td>
     <td>
       <% if(current_user != nil && (current_user.id == @playlist.user_id || current_user.is_admin?)) %>
-        <%= link_to " Add song", edit_user_playlist_path(current_user.id, @playlist.id), :class => "btn btn-info btn-lg glyphicon glyphicon-plus"%>
+        <%= link_to " " + t('add_song'), edit_user_playlist_path(current_user.id, @playlist.id), :class => "btn btn-info btn-lg glyphicon glyphicon-plus"%>
       <%end%>
     </td>
   </tr>
 </table>
+<b><%= t('description')%>:&nbsp;</b> <%= best_in_place_if (current_user && (current_user.id == @playlist.user_id || current_user.is_admin?)),
+                                                          @playlist, :description, :as => :textarea, url: user_playlist_path(@playlist.user.id, @playlist.id),
+                                                          :display_as => 'md_description', nil: "<small>"+ t('input_description') +"</small>" %>
 <% if(current_user != nil && (current_user.id == @playlist.user_id || current_user.is_admin?)) %>
-    <b>Description:&nbsp;</b><%= best_in_place @playlist, :description, :as => :textarea, url: user_playlist_path(current_user.id, @playlist.id)%>
+    <b><%=t('tags') %>:&nbsp;</b><%= best_in_place @playlist, :tag_list, url: user_playlist_path(current_user.id, @playlist.id), nil: "<small>"+ t('input_tags') +"</small>" %>
 <% else %>
-    Description: <%= @playlist.description %>
+    <%=t('tags') %>: <%= raw @playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 <% end %>
-Tags: <%= raw @playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 <% if(@playlist.songs == []) %>
-    <p><strong>Playlist is empty.</strong></p>
+    <p><strong> <%= t('playlist_is_empty') %>.</strong></p>
 <% end %>
 
   <div id="jquery_jplayer_1" class="jp-jplayer" style="width: 0px; height: 0px;">
     <img id="jp_poster_0" style="width: 0px; height: 0px; display: none;">
-    <audio id="jp_audio_0" preload="metadata" src="http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg" title="Cro Magnon Man"></audio>
   </div>
   <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
     <div class="jp-type-playlist">
       <div class="jp-gui jp-interface">
         <div class="jp-controls">
-          <button class="jp-previous" role="button" tabindex="0">previous</button>
-          <button class="jp-play" role="button" tabindex="0">play</button>
-          <button class="jp-next" role="button" tabindex="0">next</button>
-          <button class="jp-stop" role="button" tabindex="0">stop</button>
+          <button class="jp-previous" role="button" tabindex="0"><%=t('previous')%></button>
+          <button class="jp-play" role="button" tabindex="0"><%=t('play')%></button>
+          <button class="jp-next" role="button" tabindex="0"><%=t('next')%></button>
+          <button class="jp-stop" role="button" tabindex="0"><%=t('stop')%></button>
         </div>
         <div class="jp-progress">
           <div class="jp-seek-bar" style="width: 100%;">
@@ -43,8 +44,8 @@ Tags: <%= raw @playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %
           </div>
         </div>
         <div class="jp-volume-controls">
-          <button class="jp-mute" role="button" tabindex="0">mute</button>
-          <button class="jp-volume-max" role="button" tabindex="0">max volume</button>
+          <button class="jp-mute" role="button" tabindex="0"><%=t('mute')%></button>
+          <button class="jp-volume-max" role="button" tabindex="0"><%=t('max_volume')%></button>
           <div class="jp-volume-bar">
             <div class="jp-volume-bar-value" style="width: 80%;"></div>
           </div>
@@ -54,20 +55,13 @@ Tags: <%= raw @playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %
           <div class="jp-duration" role="timer" aria-label="duration">04:27</div>
         </div>
         <div class="jp-toggles">
-          <button class="jp-repeat" role="button" tabindex="0">repeat</button>
-          <button class="jp-shuffle" role="button" tabindex="0">shuffle</button>
+          <button class="jp-repeat" role="button" tabindex="0"><%=t('repeat')%></button>
+          <button class="jp-shuffle" role="button" tabindex="0"><%=t('shuffle')%></button>
         </div>
       </div>
       <div class="jp-playlist">
         <ul style="display: block;">
-          <% @playlist.songs.each do |song| %>
-              <li class="jp-playlist-current">
-                <div>
-                  <a href="javascript:;" class="jp-playlist-item-remove" >×</a>
-                  <a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0"><%=song.performer%> - <%=song.title%></a>
-                </div>
-              </li>
-          <%end%>
+          <li></li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,6 @@
-Songs:
+<%=t('songs')%>:
     <%@songs.each do |result|%>
-        <%= render :partial => "songs/show", :locals => {:song => result} %>
+        <%= render :partial => "songs/show", :locals => {:song => result, :genres => @genres} %>
     <%end%>
     <div class="digg_pagination">
       <div class="page_info">
@@ -8,7 +8,7 @@ Songs:
       </div>
       <%= will_paginate @songs%>
     </div>
-Playlists:
+<%=t('playlists')%>:
     <%@playlists.each do |result|%>
         <%= render :partial => "playlists/show", :locals => {:playlist => result} %>
     <%end%>

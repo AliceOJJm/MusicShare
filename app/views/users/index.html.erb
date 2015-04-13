@@ -1,5 +1,5 @@
 <% if(@users == []) %>
-    <b>No users registered.</b>
+    <b><%=t('no_users_registered')%>.</b>
 <% else %>
     <% @users.each do |user| %>
         <%= render :partial => "users/show", :locals => {:user => user} %>

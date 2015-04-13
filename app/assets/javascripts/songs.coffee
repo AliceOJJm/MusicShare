@@ -17,3 +17,13 @@ $(document).ready ->
     $("#deletesong" + data.song_id).remove()
   ).on "ajax:error", (e, xhr, status, error) ->
     alert("Error. Try again.")
+
+$(document).ready ->
+  $('select').on 'change', ->
+    $.ajax
+      url: "http://" + window.location.host + "/users/" + this.id.split("_")[1] + "/songs"
+      type: 'get'
+      data:
+        id: this.id.split("_")[0]
+        genre_title: this.value
+  return

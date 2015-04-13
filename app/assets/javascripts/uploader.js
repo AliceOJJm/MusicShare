@@ -17,7 +17,10 @@ var app = function() {
                 }
             });
             this.on("queuecomplete", function (file) {
-                $('#mysongs').load(document.URL +  ' #mysongs');
+                $('#mysongs').load(document.URL +  ' #mysongs', function() {
+
+                    jQuery(".best_in_place").best_in_place();
+                });
                 $('div.dz-success').remove();
             });
         }

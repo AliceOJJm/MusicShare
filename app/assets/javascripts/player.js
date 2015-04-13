@@ -28,6 +28,9 @@ $(document).ready(function(){
                 smoothPlayBar: true,
                 keyEnabled: true
             });
+            if ( $( "#sortable" ).length )
+                $( "#sortable" ).sortable();
+                $( "#sortable" ).disableSelection();
         });
     }
 });

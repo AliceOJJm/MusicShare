@@ -4,6 +4,20 @@ class Playlist < ActiveRecord::Base
   acts_as_taggable
   acts_as_votable
 
+  def md_description
+    renderer = Redcarpet::Render::HTML.new()
+    options = {
+        autolink: true,
+        no_intra_emphasis: true,
+        fenced_code_blocks: true,
+        lax_html_blocks: true,
+        strikethrough: true,
+        superscript: true,
+        space_after_headers: true
+    }
+    Redcarpet::Markdown.new(renderer, options).render(self.description).html_safe
+  end
+
   searchable do
     text :title, :description
     string :tag_list, multiple: true

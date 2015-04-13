@@ -1,11 +1,11 @@
 <div class = "digg_pagination">
   <div class = "page_info">
-   Results of search on <%= @request%>:
+    <%=t('results_of_search_on')%> <%= @request%>:
   </div>
 </div>
-<%if params[:selector] == "Songs" %>
+<%if params[:selector] == t("songs") %>
     <%@results.each do |result|%>
-        <%= render :partial => "songs/show", :locals => {:song => result} %>
+        <%= render :partial => "songs/show", :locals => {:song => result, :genres => @genres} %>
     <%end%>
     <div class="digg_pagination">
       <div class="page_info">
@@ -13,7 +13,7 @@
       </div>
     <%= will_paginate @results%>
     </div>
-<%elsif params[:selector] == "Playlists"%>
+<%elsif params[:selector] == t("playlists")%>
     <%@results.each do |result|%>
         <%= render :partial => "playlists/show", :locals => {:playlist => result} %>
     <%end%>

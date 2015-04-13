@@ -1,26 +1,26 @@
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
-    <%= link_to "Latest Songs Uploaded", home_index_path(folder: "Latest"), method: :get, id: "LatestLink", name: "folder", :class => "btn btn-default", remote: true%>
+    <%= link_to t('latest_songs_uploaded'), home_index_path(folder: "Latest"), method: :get, id: "LatestLink", name: "folder", :class => "btn btn-default", remote: true%>
   </div>
   <div class="btn-group" role="group">
-    <%= link_to "Popular playlists", home_index_path(folder: "Playlists"), method: :get, id: "PlayliststLink", name: "folder", :class => "btn btn-default", remote: true%>
+    <%= link_to t('most_popular_playlists'), home_index_path(folder: "Playlists"), method: :get, id: "PlayliststLink", name: "folder", :class => "btn btn-default", remote: true%>
   </div>
   <div class="btn-group" role="group">
-    <%= link_to "Popular songs", home_index_path(folder: "Songs"), method: :get, id: "SongsLink", name: "folder", :class => "btn btn-default", remote: true%>
+    <%= link_to t('most_popular_songs'), home_index_path(folder: "Songs"), method: :get, id: "SongsLink", name: "folder", :class => "btn btn-default", remote: true%>
   </div>
   <div class="btn-group" role="group">
-    <%= link_to "Popular users", home_index_path(folder: "Users"), method: :get, id: "UsersLink", name: "folder", :class => "btn btn-default", remote: true%>
+    <%= link_to t('most_popular_users'), home_index_path(folder: "Users"), method: :get, id: "UsersLink", name: "folder", :class => "btn btn-default", remote: true%>
   </div>
 </div>
 <%= render :partial => "tag_cloud", :locals => {:songs_tags => @songs_tags, :playlists_tags => @playlists_tags}%>
 <div class = "disp" id = "Latest">
-  <%= render :partial => "last_uploaded", :locals => {:songs => @ten_latest_songs}%>
+  <%= render :partial => "last_uploaded", :locals => {:songs => @ten_latest_songs, :genres => @genres}%>
 </div>
 <div class = "disp" id = "Playlists">
   <%= render :partial => "popular_playlists", :locals => {:playlists => @most_popular_playlists}%>
 </div>
 <div class = "disp" id = "Songs">
-  <%= render :partial => "popular_songs", :locals => {:songs => @most_popular_songs}%>
+  <%= render :partial => "popular_songs", :locals => {:songs => @most_popular_songs, :genres => @genres}%>
 </div>
 <div class = "disp" id = "Users">
   <%= render :partial => "popular_users", :locals => {:users => @most_popular_users}%>

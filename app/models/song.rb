@@ -26,13 +26,11 @@ class Song < ActiveRecord::Base
       else
         self.title = m.tag.title
       end
-      if m.tag.genre_s != ""
-        new_genre = Genre.find_by_title(m.tag.genre_s)
-        new_genre ||= Genre.create(title: m.tag.genre_s)
-          self.genre  =  new_genre
-      else
-        self.genre  = ""
-      end
+      genre_title = m.tag.genre_s
+      genre_title ||= ""
+      new_genre = Genre.find_by_title(genre_title)
+      new_genre ||= Genre.create(title: genre_title)
+      self.genre  =  new_genre
     end
   end
 

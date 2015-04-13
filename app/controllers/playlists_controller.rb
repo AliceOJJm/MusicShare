@@ -1,7 +1,8 @@
 class PlaylistsController < ApplicationController
-  respond_to :html, :json
 
+  respond_to :html, :json
   def edit
+      @genres = Genre.all
       @playlist = Playlist.find(params[:id])
       if params[:song_id]
         @playlist.songs << Song.find(params[:song_id])
@@ -32,7 +33,7 @@ class PlaylistsController < ApplicationController
 
     def index
       @user = User.find(params[:user_id])
-      @playlists = User.find_by_id(current_user.id).playlists.all
+      @playlists = User.find_by_id(params[:user_id]).playlists.all
     end
 
     def create
@@ -41,8 +42,7 @@ class PlaylistsController < ApplicationController
       @playlist.user_id = current_user.id
       redirect_to user_playlists_path(@playlist.user_id), notice: 'Playlist was successfully created.'
       @playlist.save!
-      playlist_number = (@playlist.id + 234 )
-      @playlist.title = "playlist #{playlist_number / 5}"
+      @playlist.title = "playlist #{@playlist.id}"
       @playlist.description = "No description"
       @playlist.save!
     end

@@ -2,14 +2,17 @@ class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
   respond_to :html, :json
 
-  def show
-    @songs = User.find_by_id(current_user.id).songs.all #find by id params id
-  end
-
   def index
+      if params[:id] && params[:genre_title]
+        @song = Song.find(params[:id])
+        new_genre = Genre.find_by_title(params[:genre_title])
+        @song.genre  =  new_genre
+        @song.save!
+      end
       self.new
       @user = User.find(params[:user_id])
       @songs = User.find_by_id(params[:user_id]).songs.all
+      @genres = Genre.all
   end
 
   def new

@@ -15,11 +15,66 @@
 #     I18n.locale = :es
 #
 # This would use the information in config/locales/es.yml.
-#
+#  <%=t('')%>
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 ---
 en:
+  English: "en"
+  Russian: "ru"
+  create: "Create"
+  input_tags: "...add tags"
+  input_genre: "...enter genre"
+  input_description: "add description"
+  tags_not_support: "Tag cloud is not supported"
+  latest_songs_uploaded: "Latest Songs Uploaded"
+  most_popular_playlists: "Most popular playlists"
+  most_popular_songs: "Most popular songs"
+  most_popular_users: "Most popular users"
+  music_share: "MusicShare"
+  songs: "Songs"
+  playlists: "Playlists"
+  users: "Users"
+  bookmarks: "Bookmarks"
+  find: "Find"
+  signed_in_with: "Signed in with"
+  as: "as"
+  sign_out: "Sign out"
+  title: "Title"
+  performer: "Performer"
+  description: "Description"
+  tags: "Tags"
+  no_songs_to_add: "No songs to add"
+  didnt_create_playlist_yet: "didn't create playlist yet"
+  you_didnt_create_playlist_yet: "You didn't create playlist yet"
+  create: "Create"
+  add_song: "Add song"
+  playlist_is_empty: "Playlist is empty"
+  previous: "Previous"
+  play: "Play"
+  next: "Next"
+  stop: "Stop"
+  mute: "Mute"
+  max_volume: "Max volume"
+  repeat: "Repeat"
+  shuffle: "Shuffle"
+  results_of_search_on: "Results of search on"
+  rate: "Rate"
+  rating: "Rating"
+  cancel_rating: "Cancel rating"
+  genre: "Genre"
+  this_user_didnt_upload_music_yet: "This user didn't upload music yet"
+  you_didnt_upload_music_yet: "You didn't upload music yet"
+  number_of_songs_uploaded: "Number of songs uploaded"
+  drop_music_here_to_upload: "Drop music here to upload"
+  uploaded_by: "Uploaded by"
+  didnt_upload_music_yet: "didn't upload music yet"
+  songs_uploaded_by: "Songs uploaded by"
+  no_users_registered: "No users registered"
+  profile: "Profile"
+  search: "Search"
+
+
   date:
     abbr_day_names:
     - Sun

@@ -1,8 +1,8 @@
 class SearchController < ApplicationController
   def search
-    if params[:selector] == "Songs"
+    if params[:selector] == t("songs")
       @results = search_songs
-    elsif params[:selector] == "Playlists"
+    elsif params[:selector] == t("playlists")
       @results = search_playlists
     else
       @results = search_users
@@ -11,6 +11,7 @@ class SearchController < ApplicationController
   end
 
   def tags
+    @genres = Genre.all
     if params[:tag]
       @songs = Song.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
       @playlists = Playlist.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 5)
@@ -23,10 +24,10 @@ class SearchController < ApplicationController
     else
       @search = Song.search do
         fulltext params[:request]
-        #with :tag_list, ["tag1", "tag2"]
         paginate :page => params[:page], :per_page => 5
       end
     end
+    @genres = Genre.all
     @results ||= @search.results
   end
 

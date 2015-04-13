@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :home
   root 'home#index'
-  post '/rate' => 'rater#create', :as => 'rate'
-  get '/search' => 'search#search', :as => 'search'
   resources :users do
     resources :songs do
       member do
@@ -19,6 +17,9 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   get 'tags/:tag', to: 'search#tags', as: :tag
+  post '/rate' => 'rater#create', :as => 'rate'
+  get '/search' => 'search#search', :as => 'search'
+  get '/change_locale/:locale', to: 'home#change_locale', :as => :change_locale
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

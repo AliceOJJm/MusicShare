@@ -4,29 +4,30 @@
       <tr>
         <td class = "td-width">
           <% if(current_user != nil && (current_user.id == song.user_id || current_user.is_admin?)) %>
-              <b>Title:&nbsp;</b> <%= best_in_place song, :title, url: user_song_path(current_user.id, song.id)%>
-              <b>&nbsp;&nbsp;Performer:&nbsp;</b><%= best_in_place song, :performer, url: user_song_path(current_user.id, song.id)%>
-              <form>
-                  <%= text_field :tag_list, 'data-role'=>'tagsinput' %>
-              </form>
+              <b><%=t('title')%>:&nbsp;</b> <%= best_in_place song, :title, url: user_song_path(current_user.id, song.id)%>
+              <b>&nbsp;&nbsp;<%=t('performer')%>:&nbsp;</b><%= best_in_place song, :performer, url: user_song_path(current_user.id, song.id)%>
           <% else %>
-              <b>Title:</b> <%= song.title %>
-              <b>&nbsp;&nbsp;Performer:</b> <%= song.performer %>
+              <b><%=t('title')%>:</b> <%= song.title %>
+              <b>&nbsp;&nbsp;<%=t('performer')%>:</b> <%= song.performer %>
           <% end %>
         </td>
         <td>
           <% if (current_user != nil)%>
-              <%= rating_for song, "Rating", disable_after_rate: true, imdb_avg: true, cancel_hint: 'Cancel rating'%>
+              <%= rating_for song, "Rating", disable_after_rate: true, imdb_avg: true, cancel_hint: t('cancel_rating')%>
           <% else %>
               <% if(song.average("Rating"))%>
-                  Rate: <%= song.average("Rating").avg%>
+                  <%=t('rate')%>: <%= song.average("Rating").avg%>
               <% else %>
-                  Rate: 0.0
+                  <%=t('rate')%>: 0.0
               <% end %>
           <% end %>
         </td>
-        <td rowspan="2">
-          Tags: <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        <td >
+          <% if(current_user != nil && (current_user.id == song.user_id || current_user.is_admin?)) %>
+              <%=t('tags')%>:&nbsp;<%= best_in_place song, :tag_list, url: user_song_path(current_user.id, song.id), nil: "<small>"+ t('input_tags') +"</small>" %>
+          <% else %>
+              <%=t('tags')%>:&nbsp; <%= raw song.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -42,7 +43,17 @@
           <% end %>
         </td>
         <td>
-          Genre: <% if song.genre %> <%= song.genre.title%> <%end%>
+          <% if(current_user != nil && (current_user.id == song.user_id || current_user.is_admin?))%>
+              <%=t('genre')%>:&nbsp;
+              <% if song.genre %>
+                  <%=t('genre')%>:&nbsp;
+                  <%=select_tag "#{song.id}_#{current_user.id}", options_for_select(genres.map{|genre| genre.title}, :selected => song.genre.title)%>
+              <%end%>
+              <br>
+          <% else %>
+              <%=t('genre')%>:&nbsp;<% if song.genre %><%= song.genre.title%><%end%><br>
+          <% end %>
+          <%=t('uploaded_by')%>: <%= link_to song.user.name, user_path(song.user.id)%>
         </td>
       </tr>
     </table>

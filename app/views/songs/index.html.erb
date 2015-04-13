@@ -1,22 +1,21 @@
 <% if(@songs == []) %>
-    <% if(current_user.id != params[:id]) %>
-        <p><strong><%= @user.name %> didn't upload music yet.</strong></p>
+    <% if(!current_user || current_user.id != params[:user_id].to_i) %>
+        <p><strong><%= @user.name %> <%=t('didnt_upload_music_yet')%>.</strong></p>
     <% else %>
-        <p><strong>You didn't upload music yet.</strong></p>
+        <p><strong><%=t('you_didnt_upload_music_yet')%>.</strong></p>
     <% end %>
 <% end %>
 <% if(current_user != nil && current_user.id.to_s == params[:user_id])%>
     <%= render "form" %>
     <br><br>
 <% end %>
-
-<% if(current_user.id != params[:id]) %>
-    <p><strong>Songs uploaded by <%= @user.name %>.</strong></p>
-<% end %>
 <% if(@songs != []) %>
+<% if(!current_user || current_user.id != params[:user_id].to_i) %>
+    <p><strong><%=t('songs_uploaded_by')%> <%= @user.name %>.</strong></p>
+<% end %>
     <div id="mysongs">
         <% @songs.each do |song| %>
-            <%= render :partial => "show", :locals => {:song => song} %>
+            <%= render :partial => "show", :locals => {:song => song, :genres => @genres} %>
         <% end %>
     </div>
 <% end %>

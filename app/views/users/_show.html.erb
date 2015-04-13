@@ -5,11 +5,11 @@
         <% if(user.is_admin?) %>
             <%= image_tag("https://cdn3.iconfinder.com/data/icons/fatcow/16x16_0760/ruby.png", :alt => "admin") %>
         <% end %>
-        Number of songs uploaded: <b><%= user.songs.count %></b>
+        <%=t('number_of_songs_uploaded')%>: <b><%= user.songs.count %></b>
         <% if(user.average("Rating"))%>
-            Rate: <%= user.average("Rating").avg%>
+            <%=t('rate')%>: <%= user.average("Rating").avg%>
         <% else %>
-            Rate: 0.0
+            <%=t('rate')%>: 0.0
         <% end %>
         <br>
       </div>

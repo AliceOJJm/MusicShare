@@ -102,17 +102,17 @@ h3.highlight  {
 }
 
 .panel{
-    width: 60%;
+    width: 70%;
     margin: auto;
 }
 
 .jumbotron {
-    width: 68.5%;
+    width: 80%;
     margin: auto;
 }
 
 .panel li{
-    width:49%;
+    width:49.85%;
     text-align: center;
 }
 
@@ -215,6 +215,11 @@ h3.highlight  {
 .flag.flag-ru {background-position: 0 -15px}
 
 .disp{display: none;}
+
+.logo{
+    width: 23px;
+    height: 45px;
+}
 
 .fasade{}
 /*

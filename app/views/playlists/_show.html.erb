@@ -4,7 +4,7 @@
         <div class="col-md-7 text-center vcenter">
           <h3 class="panel-title">
             <%= link_to user_playlist_path(playlist.user_id, playlist.id), name: "view_playlist", method: :get do%>
-                Title: <%= playlist.title %>
+                <%=t('title')%>: <%= playlist.title %>
             <% end %>
           </h3>
         </div>
@@ -31,9 +31,16 @@
           <%end%>
       </div>
         <div class="panel-body">
-              <p>Description: <%= playlist.description %></p>
+          <b><%= t('description')%>:&nbsp;</b> <%= best_in_place_if (current_user && (current_user.id == playlist.user_id || current_user.is_admin?)),
+                                                                    playlist, :description, :as => :textarea, url: user_playlist_path(playlist.user.id, playlist.id),
+                                                                    :display_as => 'md_description', nil: "<small>"+ t('input_description') +"</small>" %>
           <div class="panel-footer">
-            Tags: <%= raw playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+            <%=t('uploaded_by')%>: <%= link_to playlist.user.name, user_path(playlist.user.id)%>
+            <% if(current_user != nil && (current_user.id == playlist.user_id || current_user.is_admin?)) %>
+                <b><%=t('tags') %>:&nbsp;</b><%= best_in_place playlist, :tag_list, url: user_playlist_path(current_user.id, playlist.id), nil: "<small>"+ t('input_tags') +"</small>" %>
+            <% else %>
+                <%=t('tags') %>: &nbsp;<%= raw playlist.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+            <% end %>
           </div>
         </div>
     </div>
