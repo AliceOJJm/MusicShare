@@ -44,7 +44,7 @@ ru:
   genre: "Жанр"
   this_user_didnt_upload_music_yet: "Пользователь ещё не загрузил музыку"
   you_didnt_upload_music_yet: "Вы ещё не загрузили музыку"
-  number_of_songs_uploaded: "Номер загруженной музыки"
+  number_of_songs_uploaded: "Количество загруженной музыки"
   drop_music_here_to_upload: "Переместите музыку сюда, чтобы загрузить"
   uploaded_by: "Автор"
   didnt_upload_music_yet: "Ещё не загрузил музыку"

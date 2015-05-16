@@ -4,8 +4,7 @@
       <% if(current_user != nil && (current_user.id == @playlist.user_id || current_user.is_admin?)) %>
           <p> <%= t('title') %>:&nbsp;<strong><%= best_in_place @playlist, :title, url: user_playlist_path(current_user.id, @playlist.id)%></strong></p>
       <% else %>
-	  <p><%= t('created_by') %>:<%= link_to @playlist.user.name, user_path(@playlist.user.id) %></p>
-          <p><%= t('title') %>:<strong> <%= @playlist.title %></strong></p>
+          <p><%= t('title') %>:<strong> <%= @playlist.title %>&nbsp;&nbsp;<%= t('created_by') %>:<strong> <%= link_to @playlist.user.name, user_path(@playlist.user.id) %></strong></p>
       <% end %>
     </td>
     <td>

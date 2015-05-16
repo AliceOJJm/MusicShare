@@ -5,7 +5,7 @@ class Playlist < ActiveRecord::Base
   acts_as_votable
 
   def md_description
-    renderer = Redcarpet::Render::HTML.new(:filter_html => true)
+    renderer = Redcarpet::Render::HTML.new()
     options = {
         autolink: true,
         no_intra_emphasis: true,

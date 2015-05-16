@@ -14,7 +14,7 @@ $(document).ready(function(){
                 songs.push( song );
             }
             var myPlaylist;
-		if ($("#jquery_jplayer_1").attr('name') == "auth")
+		alert ($("#jquery_jplayer_1").attr('name'));
 		{
  		myPlaylist = new jPlayerPlaylist({
                 jPlayer: "#jquery_jplayer_1",
@@ -22,22 +22,6 @@ $(document).ready(function(){
             }, songs, {
                 playlistOptions: {
                     enableRemoveControls: true
-                },
-                swfPath: "jquery.jplayer.swf",
-                supplied: "oga, mp3",
-                wmode: "window",
-                useStateClassSkin: true,
-                autoBlur: false,
-                smoothPlayBar: true,
-                keyEnabled: true
-            });}
-	    else{
- 		myPlaylist = new jPlayerPlaylist({
-                jPlayer: "#jquery_jplayer_1",
-                cssSelectorAncestor: "#jp_container_1"
-            }, songs, {
-                playlistOptions: {
-                    enableRemoveControls: false
                 },
                 swfPath: "jquery.jplayer.swf",
                 supplied: "oga, mp3",

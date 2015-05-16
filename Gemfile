@@ -63,6 +63,8 @@ gem 'acts-as-taggable-on'
 gem 'bootstrap-tagsinput-rails'
 gem 'chosen-rails'
 
+gem 'cancancan', '~> 1.10'
+
 gem "fog"
 gem "carrierwave"
 gem 'dropzonejs-rails'

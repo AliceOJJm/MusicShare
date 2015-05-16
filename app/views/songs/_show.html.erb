@@ -44,7 +44,6 @@
         </td>
         <td>
           <% if(current_user != nil && (current_user.id == song.user_id || current_user.is_admin?))%>
-              <%=t('genre')%>:&nbsp;
               <% if song.genre %>
                   <%=t('genre')%>:&nbsp;
                   <%=select_tag "#{song.id}_#{current_user.id}", options_for_select(genres.map{|genre| genre.title}, :selected => song.genre.title)%>

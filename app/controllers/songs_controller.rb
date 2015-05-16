@@ -1,6 +1,14 @@
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
   respond_to :html, :json
+  before_action :check_user, only: [:create, :destroy]
+
+def check_user
+  unless params[user_id] == current_user.id
+    redirect_to root_path
+  end
+end
+
 
   def index
       if params[:id] && params[:genre_title]
@@ -20,14 +28,19 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = Song.create(song_params)
-    @song.parse_mp3
-    respond_to do |format|
-      if @song.save
-        format.html { redirect_to user_path(@song.user_id)}
-        format.json { render json: @song }
-      end
+    begin
+      @song = Song.create(song_params)
+      @song.parse_mp3
+      respond_to do |format|
+        if @song.save
+          format.html { redirect_to user_path(@song.user_id)}
+          format.json { render json: @song }
+        end
     end
+  rescue
+    @song.destroy
+    render json:{}
+  end
   end
 
   def update
@@ -42,6 +55,8 @@ class SongsController < ApplicationController
   def copy
     @song = Song.find(params[:id])
     @song_new = Song.new(title: @song.title, performer: @song.performer, user_id: current_user.id, remote_file_url: @song.file.url.to_s)
+    @song_new.genre = @song.genre
+    @song_new.tag_list = @song.tag_list
     @song_new.save
     render json: {song_id: params[:id]}
   end

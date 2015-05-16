@@ -66,6 +66,7 @@ class PlaylistsController < ApplicationController
       @playlist.unliked_by current_user
       @playlist.likes -= 1
     end
+puts @playlist.likes + "1"
     @playlist.save
     render json: { like_count: @playlist.likes, playlist_id: params[:id] }
   end
